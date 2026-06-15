@@ -1,0 +1,3 @@
+// Define reusable custom commands here.
+// Example:
+// Cypress.Commands.add('login', (email, password) => { ... });
