@@ -1,0 +1,24 @@
+{
+  "name": "qa-automation-cypress",
+  "version": "1.0.0",
+  "description": "QA Automation learning project with Cypress (E2E).",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:chrome": "cypress run --browser chrome",
+    "test": "cypress run"
+  },
+  "keywords": [
+    "cypress",
+    "e2e",
+    "qa",
+    "automation"
+  ],
+  "author": "VladM",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^15.17.0"
+  }
+}
