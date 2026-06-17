@@ -13,6 +13,27 @@
 npm install
 ```
 
+## Налаштування доступів
+
+Тестовий сайт закритий HTTP Basic Auth. Креди зберігаються локально у `cypress.env.json`
+(цей файл у `.gitignore` і не потрапляє в репозиторій).
+
+Створіть його з шаблону та підставте свої значення:
+
+```bash
+cp cypress.env.example.json cypress.env.json
+```
+
+```json
+{
+  "basicAuthUsername": "<your-login>",
+  "basicAuthPassword": "<your-password>"
+}
+```
+
+Значення доступні в тестах через `Cypress.env('basicAuthUsername')` /
+`Cypress.env('basicAuthPassword')`.
+
 ## Запуск тестів
 
 Інтерактивний режим (Test Runner):
@@ -51,8 +72,10 @@ npm run cy:run:chrome
 
 Базові налаштування в `cypress.config.js`:
 
-- `baseUrl` — `https://example.cypress.io`
+- `baseUrl` — `https://qauto.forstudy.space`
 - `viewport` — 1280×720
 - `defaultCommandTimeout` — 8000 мс
 - `video` — вимкнено
 - `retries` — 1 повтор у `runMode`
+
+Креди Basic Auth — у `cypress.env.json` (див. розділ «Налаштування доступів»).

@@ -5,6 +5,9 @@ cypress/videos/
 cypress/screenshots/
 cypress/downloads/
 
+# Local secrets / credentials
+cypress.env.json
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
