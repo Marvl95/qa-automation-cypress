@@ -8,6 +8,11 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "cy:run:chrome": "cypress run --browser chrome",
+    "cy:open:qauto": "cypress open --config-file config/qauto.config.js",
+    "cy:open:qauto2": "cypress open --config-file config/qauto2.config.js",
+    "cy:run:qauto": "cypress run --config-file config/qauto.config.js",
+    "cy:run:qauto2": "cypress run --config-file config/qauto2.config.js",
+    "test:all": "npm run cy:run:qauto && npm run cy:run:qauto2",
     "test": "cypress run"
   },
   "keywords": [
@@ -19,6 +24,7 @@
   "author": "VladM",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^15.17.0"
+    "cypress": "^15.17.0",
+    "mochawesome": "^7.1.4"
   }
 }
