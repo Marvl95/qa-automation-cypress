@@ -17,6 +17,23 @@ module.exports = defineConfig({
   },
   fixturesFolder: 'cypress/fixtures',
 
+  // Reporter (mochawesome) — configured in the main config and inherited by env configs
+  reporter: 'mochawesome',
+  reporterOptions: {
+    reportDir: 'cypress/reports/mochawesome',
+    overwrite: false,
+    html: true,
+    json: true,
+  },
+
+  env: {
+    basicAuthUsername: 'guest',
+    basicAuthPassword: 'welcome2qauto',
+    // default (qauto) account — overridden per environment config
+    userEmail: 'marvl.qauto21@test.com',
+    userPassword: 'Password1',
+  },
+
   // E2E-specific options
   e2e: {
     baseUrl: 'https://qauto.forstudy.space',

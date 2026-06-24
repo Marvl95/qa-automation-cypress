@@ -8,11 +8,6 @@ import {
   signInModal,
 } from './selectors';
 
-const BASIC_AUTH = {
-  username: Cypress.env('basicAuthUsername'),
-  password: Cypress.env('basicAuthPassword'),
-};
-
 Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
   if (options && options.sensitive) {
     options.log = false;
@@ -26,8 +21,19 @@ Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
   return originalFn(element, text, options);
 });
 
+// Inject HTTP basic auth (guest/welcome2qauto) into every visit so direct page
+// navigations (incl. Page Objects) pass the qauto auth gate.
+Cypress.Commands.overwrite('visit', (originalFn, url, options = {}) => {
+  const auth = {
+    username: Cypress.env('basicAuthUsername'),
+    password: Cypress.env('basicAuthPassword'),
+  };
+
+  return originalFn(url, { auth, ...options });
+});
+
 Cypress.Commands.add('visitQauto', (path = '/') => {
-  cy.visit(path, { auth: BASIC_AUTH });
+  cy.visit(path);
 });
 
 Cypress.Commands.add('openRegistrationForm', () => {
