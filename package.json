@@ -12,6 +12,7 @@
     "cy:open:qauto2": "cypress open --config-file config/qauto2.config.js",
     "cy:run:qauto": "cypress run --config-file config/qauto.config.js",
     "cy:run:qauto2": "cypress run --config-file config/qauto2.config.js",
+    "cy:run:api": "cypress run --spec cypress/e2e/api.cy.js",
     "test:all": "npm run cy:run:qauto && npm run cy:run:qauto2",
     "test": "cypress run"
   },
