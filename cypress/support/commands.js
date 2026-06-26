@@ -107,3 +107,39 @@ Cypress.Commands.add('logout', () => {
   cy.get(garagePage.logoutButton).contains('Log out').click();
   cy.get('header').contains('a, button', 'Sign In').should('be.visible');
 });
+
+// --- API helpers -----------------------------------------------------------
+
+// HTTP basic-auth credentials for the qauto gate, reused by every cy.request.
+const basicAuth = () => ({
+  username: Cypress.env('basicAuthUsername'),
+  password: Cypress.env('basicAuthPassword'),
+});
+
+// GET /api/cars — returns the list of the logged-in user's cars.
+Cypress.Commands.add('getCarsViaApi', () => {
+  return cy.request({
+    method: 'GET',
+    url: '/api/cars',
+    auth: basicAuth(),
+  });
+});
+
+// POST /api/expenses — creates a fuel expense for the given car via API.
+Cypress.Commands.add('createExpenseViaApi', (carId, expense = {}) => {
+  const { mileage, liters, totalCost, reportedAt, forceMileage = false } = expense;
+
+  return cy.request({
+    method: 'POST',
+    url: '/api/expenses',
+    auth: basicAuth(),
+    body: {
+      carId,
+      reportedAt: reportedAt || new Date().toISOString().slice(0, 10),
+      mileage,
+      liters,
+      totalCost,
+      forceMileage,
+    },
+  });
+});
